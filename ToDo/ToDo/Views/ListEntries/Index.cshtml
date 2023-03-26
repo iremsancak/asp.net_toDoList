@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ToDo.Models.ListEntry>
+@{
+	ViewData["Title"] = "To Do List";
+}
+
+<h1>To Do List</h1>
+
+@Html.Partial("Create", new ListEntry())
+
+<table class="table">
+	<thead>
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.isDone)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Description)
+		</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.isDone)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Description)
+			</td>
+			<td>
+				<a href="#" onclick="LoadEditModal(@item.Id)">Edit</a> | 
+				<a href="#" onclick="LoadDeleteModal(@item.Id)">Delete</a>
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>
+<div id="modalContainer"></div>
+
+<script type="text/javascript">
+	    LoadDeleteModal = function (ListEntryId) {
+        $("#modalContainer").load(`/ListEntries/Delete/${ListEntryId}`, function() {
+			$('#ListEntryDeleteModal').modal( 'show');
+
+        });
+    };
+	LoadEditModal = function (ListEntryId) {
+		$("#modalContainer").load(`/ListEntries/Edit/${ListEntryId}`, function () {
+			$('#ListEntryEditModal').modal('show');
+        });
+    };
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,30 @@
+﻿@model ToDo.Models.ListEntry
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ListEntry</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "firstColumn">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "secondColumn">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "firstColumn">
+            @Html.DisplayNameFor(model => model.isDone)
+        </dt>
+        <dd class = "secondColumn">
+            @Html.DisplayFor(model => model.isDone)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
